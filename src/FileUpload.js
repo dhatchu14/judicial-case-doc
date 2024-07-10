@@ -3,7 +3,7 @@ import './FileUpload.css';
 import fileIcon from './file-icon.png'; // Ensure the path is correct
 import uploadIcon from './upload-icon.png'; // Add your upload icon path
 
-const FileUpload = () => {
+const FileUpload = ({ onClassify }) => {
   const [files, setFiles] = useState([]);
 
   const handleFileUpload = (newFiles) => {
@@ -66,11 +66,6 @@ const FileUpload = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleClassify = () => {
-    // Add classification logic here
-    alert("Classify button clicked!");
-  };
-
   return (
     <div className="upload-container">
       <h1 className="title">Judicial Case Classifier</h1>
@@ -117,7 +112,7 @@ const FileUpload = () => {
             <p>No files uploaded yet.</p>
           )}
           {files.length > 0 && (
-            <button className="classify-button" onClick={handleClassify}>Classify</button>
+            <button className="classify-button" onClick={() => onClassify(files)}>Classify</button>
           )}
         </div>
       </div>
